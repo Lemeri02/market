@@ -1,7 +1,8 @@
 class ProductCollection
   PRODUCT_TYPES = {
     film: { dir: 'films', class: Movie },
-    book: { dir: 'books', class: Book }
+    book: { dir: 'books', class: Book },
+    disk: { dir: 'disks', class: Disk }
   }
 
   def initialize(products = [])
