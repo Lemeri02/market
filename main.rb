@@ -22,12 +22,16 @@ until choice.zero?
   choice = STDIN.gets.to_i
   chosen_product = collection.to_a[choice - 1]
 
-  unless choice <= 0
-    if chosen_product.amount.positive?
+  unless choice.zero?
+    if choice > collection.to_a.size || choice.negative?
+      puts 'Нет такого товара.'
+      puts
+    elsif chosen_product.amount.positive?
       chosen_product.update(amount: (chosen_product.amount - 1), total: (chosen_product.total + 1))
       shopping_cart << chosen_product
       puts %(Вы выбрали: #{chosen_product})
       puts %(Всего товаров на сумму: #{chosen_product.price} руб.)
+      puts
     else
       puts
       puts 'Такого товара больше нет. Выберите другой :)'
@@ -44,7 +48,7 @@ shopping_cart.uniq!
 
 if sum != 0
   puts 'Вы купили:'
-  puts shopping_cart.map{ |item| puts "#{item} - #{item.total} шт." }
+  puts(shopping_cart.map { |item| puts "#{item} - #{item.total} шт." })
   puts "С вас - #{sum} руб. Спасибо за покупки!"
 else
   puts 'Приходите к нам снова!'
