@@ -22,7 +22,7 @@ class ProductCollection
       end
     end
 
-    self.new(products)
+    new(products)
   end
 
   def sort!(params)

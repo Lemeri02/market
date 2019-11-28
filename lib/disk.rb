@@ -4,13 +4,14 @@ class Disk < Product
   def self.from_file(file_path)
     lines = File.readlines(file_path, encoding: 'UTF-8', chomp: true).map(&:chomp)
 
-    self.new(
+    new(
       title: lines[0],
       artist: lines[1],
       genre: lines[2],
       year: lines[3].to_i,
       price: lines[4].to_i,
-      amount: lines[5].to_i
+      amount: lines[5].to_i,
+      total: 0
     )
   end
 
@@ -24,7 +25,7 @@ class Disk < Product
   end
 
   def to_s
-    %(Альбом #{title} - "#{artist}", #{genre}, #{year}, #{super})
+    %(Альбом "#{title}" - #{artist}, #{genre}, #{year}, #{super})
   end
 
   def update(params)

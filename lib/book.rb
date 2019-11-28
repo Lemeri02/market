@@ -4,13 +4,13 @@ class Book < Product
   def self.from_file(file_path)
     lines = File.readlines(file_path, encoding: 'UTF-8', chomp: true).map(&:chomp)
 
-    self.new(
+    new(
       title: lines[0],
       genre: lines[1],
       author: lines[2],
       price: lines[3].to_i,
       amount: lines[4].to_i,
-      file_path: file_path
+      total: 0
     )
   end
 
