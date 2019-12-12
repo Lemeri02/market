@@ -24,6 +24,10 @@ class Disk < Product
     @year = params[:year]
   end
 
+  def print_cart
+    %(Альбом "#{title}" - #{artist}, #{genre}, #{year}, #{price} руб.)
+  end
+
   def to_s
     %(Альбом "#{title}" - #{artist}, #{genre}, #{year}, #{super})
   end

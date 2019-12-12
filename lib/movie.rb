@@ -22,6 +22,10 @@ class Movie < Product
     @director = params[:director]
   end
 
+  def print_cart
+    %(Фильм "#{title}", #{year}, реж. #{director}, #{price} руб.)
+  end
+
   def to_s
     %(Фильм "#{title}", #{year}, реж. #{director}, #{super})
   end

@@ -48,7 +48,7 @@ shopping_cart.uniq!
 
 if sum != 0
   puts 'Вы купили:'
-  puts(shopping_cart.map { |item| puts "#{item} - #{item.total} шт." })
+  puts(shopping_cart.map { |item| puts "#{item.print_cart} х #{item.total} шт." })
   puts "С вас - #{sum} руб. Спасибо за покупки!"
 else
   puts 'Приходите к нам снова!'

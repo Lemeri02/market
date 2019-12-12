@@ -22,6 +22,10 @@ class Book < Product
     @author = params[:author]
   end
 
+  def print_cart
+    %(Книга "#{title}", #{genre}, автор - #{author}, #{price} руб.)
+  end
+
   def to_s
     %(Книга "#{title}", #{genre}, автор - #{author}, #{super})
   end
