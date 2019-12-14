@@ -10,8 +10,7 @@ class Disk < Product
       genre: lines[2],
       year: lines[3].to_i,
       price: lines[4].to_i,
-      amount: lines[5].to_i,
-      total: 0
+      amount: lines[5].to_i
     )
   end
 

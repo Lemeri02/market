@@ -9,8 +9,7 @@ class Movie < Product
       director: lines[1],
       year: lines[2].to_i,
       price: lines[3].to_i,
-      amount: lines[4].to_i,
-      total: 0
+      amount: lines[4].to_i
     )
   end
 

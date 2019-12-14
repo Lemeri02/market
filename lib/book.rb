@@ -9,8 +9,7 @@ class Book < Product
       genre: lines[1],
       author: lines[2],
       price: lines[3].to_i,
-      amount: lines[4].to_i,
-      total: 0
+      amount: lines[4].to_i
     )
   end
 

@@ -6,10 +6,10 @@ require_relative 'lib/product-collection'
 
 collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 collection.sort!(by: :price, order: :asc)
-p collection
 
 choice = 1
 shopping_cart = []
+receipt = {}
 sum = 0
 
 until choice.zero?
@@ -28,7 +28,7 @@ until choice.zero?
       puts 'Нет такого товара.'
       puts
     elsif chosen_product.amount.positive?
-      chosen_product.update(amount: (chosen_product.amount - 1), total: (chosen_product.total + 1))
+      chosen_product.update(amount: (chosen_product.amount - 1))
       shopping_cart << chosen_product
       puts %(Вы выбрали: #{chosen_product})
       puts %(Всего товаров на сумму: #{chosen_product.price} руб.)
@@ -42,14 +42,14 @@ until choice.zero?
 end
 
 shopping_cart.each do |product|
+  receipt[product] = shopping_cart.count(product)
   sum += product.price
 end
 
-shopping_cart.uniq!
-
 if sum != 0
   puts 'Вы купили:'
-  puts(shopping_cart.map { |item| puts "#{item.print_cart} х #{item.total} шт." })
+  receipt.each { |key, value| puts %(#{key.print_cart} - #{value} шт.) }
+  puts
   puts "С вас - #{sum} руб. Спасибо за покупки!"
 else
   puts 'Приходите к нам снова!'
