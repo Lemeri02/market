@@ -6,6 +6,7 @@ require_relative 'lib/product-collection'
 
 collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 collection.sort!(by: :price, order: :asc)
+p collection
 
 choice = 1
 shopping_cart = []
