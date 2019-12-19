@@ -7,7 +7,7 @@ require_relative 'lib/product_collection'
 
 collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 collection.sort!(by: :price, order: :asc)
-products = Cart.new
+cart = Cart.new
 
 choice = 1
 
@@ -21,7 +21,7 @@ until choice.zero?
 
   choice = STDIN.gets.to_i
 
-  break if choice.zero?
+  next if choice.zero?
 
   chosen_product = collection.to_a[choice - 1]
 
@@ -29,9 +29,9 @@ until choice.zero?
     puts 'Нет такого товара.'
     puts
   elsif chosen_product.amount.positive?
-    products.add_product(chosen_product)
-    puts %(Вы выбрали: #{chosen_product})
-    puts %(Всего товаров на сумму: #{chosen_product.price} руб.)
+    cart.add_product(chosen_product)
+    puts "Вы выбрали: #{chosen_product}"
+    puts "Всего товаров на сумму: #{chosen_product.price} руб."
   else
     puts
     puts 'Такого товара больше нет. Выберите другой :)'
@@ -40,4 +40,10 @@ until choice.zero?
   puts
 end
 
-products.print_receipt
+if cart.payment.zero?
+  puts 'Приходите к нам снова!'
+else
+  puts 'Вы купили:'
+  puts cart.print_receipt
+  puts "С вас - #{cart.payment} руб. Спасибо за покупки!"
+end
